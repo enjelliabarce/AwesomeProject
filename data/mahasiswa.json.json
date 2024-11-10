@@ -1,0 +1,692 @@
+[
+  {
+    "no": 1,
+    "first_name": "Alia",
+    "last_name": "Maulana Resti",
+    "email": "aliamaulanaresti@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8667599,
+    "longitude": 110.3214134
+  },
+  {
+    "no": 2,
+    "first_name": "ALYA",
+    "last_name": "SYAHIDHA",
+    "email": "alyasyahidha@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7867386,
+    "longitude": 110.5948413
+  },
+  {
+    "no": 3,
+    "first_name": "Amirul",
+    "last_name": "Fahmi",
+    "email": "amirulfahmiash-shiddiqie@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.7741292,
+    "longitude": 110.4335901
+  },
+  {
+    "no": 4,
+    "first_name": "Anastashia Kedaton",
+    "last_name": "Firasatie",
+    "email": "anastashiakedatonfirasatie506013@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.625758,
+    "longitude": 110.4283482
+  },
+  {
+    "no": 5,
+    "first_name": "Anggita",
+    "last_name": "Maharani",
+    "email": "anggitamaharani@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.7077444,
+    "longitude": 110.3397598
+  },
+  {
+    "no": 6,
+    "first_name": "Annisa",
+    "last_name": "Cahyarina",
+    "email": "annisacahyarina@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5867725,
+    "longitude": 110.5642926
+  },
+  {
+    "no": 7,
+    "first_name": "arsyifa",
+    "last_name": "wibowo",
+    "email": "arsyifa.rie2003@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.7269347,
+    "longitude": 110.4189062
+  },
+  {
+    "no": 8,
+    "first_name": "Asmarina",
+    "last_name": "Nurjanah",
+    "email": "asmarinanurjanah1504@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.55039,
+    "longitude": 110.536461
+  },
+  {
+    "no": 9,
+    "first_name": "Azril Rozaqi",
+    "last_name": "Ar Rosyid",
+    "email": "azrilrozaqiarrosyid@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.735569,
+    "longitude": 110.5469812
+  },
+  {
+    "no": 10,
+    "first_name": "Calvinros",
+    "last_name": "Ramadhino",
+    "email": "Calvinrosmuhammadramadhino@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.868973,
+    "longitude": 110.5370708
+  },
+  {
+    "no": 11,
+    "first_name": "Camila",
+    "last_name": "Fauzia",
+    "email": "camilafauzia@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8601787,
+    "longitude": 110.47206
+  },
+  {
+    "no": 12,
+    "first_name": "Cindy",
+    "last_name": "Wahyu Karisma",
+    "email": "cindywahyukarisma@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.753939,
+    "longitude": 110.4671795
+  },
+  {
+    "no": 13,
+    "first_name": "Danniel Immanuelle",
+    "last_name": "Kristo Joaan",
+    "email": "danniel.immanuelle1703@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.6827796,
+    "longitude": 110.4967532
+  },
+  {
+    "no": 14,
+    "first_name": "Devinta",
+    "last_name": "Putri",
+    "email": "devintacahayaputri506129@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7844171,
+    "longitude": 110.3412476
+  },
+  {
+    "no": 15,
+    "first_name": "Dhimar Fadhilansyah",
+    "last_name": "Darojat",
+    "email": "dhimarfadhilansyahdarojat@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.5821853,
+    "longitude": 110.2325765
+  },
+  {
+    "no": 16,
+    "first_name": "Dhiva",
+    "last_name": "Nur Isnaeni",
+    "email": "dhivanurisnaeni@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.9110923,
+    "longitude": 110.3961221
+  },
+  {
+    "no": 17,
+    "first_name": "Digita",
+    "last_name": "Agni",
+    "email": "digitafadeliaagni2004@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.8887239,
+    "longitude": 110.6806624
+  },
+  {
+    "no": 18,
+    "first_name": "Edra",
+    "last_name": "Elricadewi",
+    "email": "edraelricadewi@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5669543,
+    "longitude": 110.358729
+  },
+  {
+    "no": 19,
+    "first_name": "Elvina",
+    "last_name": "Ardhana",
+    "email": "elvinanurrizaardhana@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7517246,
+    "longitude": 110.2690607
+  },
+  {
+    "no": 20,
+    "first_name": "Enjellia",
+    "last_name": "Barce",
+    "email": "enjelliabarcepratama@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8775075,
+    "longitude": 110.4545444
+  },
+  {
+    "no": 21,
+    "first_name": "Faiz Hamdan",
+    "last_name": "Zulfa",
+    "email": "faizhamdanzulfa@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.6109421,
+    "longitude": 110.2472724
+  },
+  {
+    "no": 22,
+    "first_name": "Fani",
+    "last_name": "Aisyah",
+    "email": "faniaisyah@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.723351,
+    "longitude": 110.4640203
+  },
+  {
+    "no": 23,
+    "first_name": "Farah",
+    "last_name": "Nabila",
+    "email": "farahnabilahaibah@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.91045,
+    "longitude": 110.7113105
+  },
+  {
+    "no": 24,
+    "first_name": "farisah",
+    "last_name": "edmi",
+    "email": "farisah.edmi@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.7734347,
+    "longitude": 110.4342212
+  },
+  {
+    "no": 25,
+    "first_name": "Farmana Ditya",
+    "last_name": "Alya Safitri",
+    "email": "farmanadityaalyasafitri2103@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8419088,
+    "longitude": 110.2931387
+  },
+  {
+    "no": 26,
+    "first_name": "Finie",
+    "last_name": "Aralia Shearani",
+    "email": "finiearaliashearani@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8398944,
+    "longitude": 110.4248255
+  },
+  {
+    "no": 27,
+    "first_name": "Fisti Fadila Lorentin",
+    "last_name": "Arinina",
+    "email": "fistifadila@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.6032817,
+    "longitude": 110.2377104
+  },
+  {
+    "no": 28,
+    "first_name": "Fuad",
+    "last_name": "Agus Salim",
+    "email": "fuadagussalim@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.7102451,
+    "longitude": 110.5285141
+  },
+  {
+    "no": 29,
+    "first_name": "Galuh Azzahra",
+    "last_name": "Chaylanny",
+    "email": "galuhazzahrachaylanny2004@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8240213,
+    "longitude": 110.3616079
+  },
+  {
+    "no": 30,
+    "first_name": "Hafizh",
+    "last_name": "Vergiansyah",
+    "email": "hafizhvergiansyah2503@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.7757566,
+    "longitude": 110.6772847
+  },
+  {
+    "no": 31,
+    "first_name": "Harits",
+    "last_name": "Nuraga",
+    "email": "haritsnuragapadika@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.5830942,
+    "longitude": 110.6698096
+  },
+  {
+    "no": 32,
+    "first_name": "Hayyu Rahmayani",
+    "last_name": "Puspitasari",
+    "email": "hayyurahmayanipuspitasari0703@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8503742,
+    "longitude": 110.6453691
+  },
+  {
+    "no": 33,
+    "first_name": "Helos Kana",
+    "last_name": "Aziza",
+    "email": "heloskanaaziza@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.7859414,
+    "longitude": 110.4956415
+  },
+  {
+    "no": 34,
+    "first_name": "Jalu",
+    "last_name": "riski Prasetyo",
+    "email": "jaluriskiprasetyo2004@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.8517223,
+    "longitude": 110.4857733
+  },
+  {
+    "no": 35,
+    "first_name": "Johanes Berchmann Juvens Junior",
+    "last_name": "Pareira",
+    "email": "johanesberchmannjuvensjuniorpareira2004@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "shemale",
+    "latitude": -7.6085104,
+    "longitude": 110.44324
+  },
+  {
+    "no": 36,
+    "first_name": "Joseph",
+    "last_name": "Damarseto",
+    "email": "josephdamarseto2004@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.9150811,
+    "longitude": 110.3980231
+  },
+  {
+    "no": 37,
+    "first_name": "Khosyi Nur",
+    "last_name": "Aliya",
+    "email": "khosyinuraliya@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.8740125,
+    "longitude": 110.2192763
+  },
+  {
+    "no": 38,
+    "first_name": "Kinasih",
+    "last_name": "Sayekti",
+    "email": "kinasihsayekti@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7472759,
+    "longitude": 110.572234
+  },
+  {
+    "no": 39,
+    "first_name": "Laila Nur",
+    "last_name": "Azizah",
+    "email": "lailanurazizah@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.8170516,
+    "longitude": 110.6890401
+  },
+  {
+    "no": 40,
+    "first_name": "Liviasta Gisella",
+    "last_name": "Sujarwo",
+    "email": "liviastagisellasujarwo@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.818984,
+    "longitude": 110.4516371
+  },
+  {
+    "no": 41,
+    "first_name": "Lutfi Desta",
+    "last_name": "Ramadhani",
+    "email": "lutfi.desta.ramadhani@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5894765,
+    "longitude": 110.4733632
+  },
+  {
+    "no": 42,
+    "first_name": "M. Indra",
+    "last_name": "Adi Kusuma",
+    "email": "mindraadikusuma@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.8369926,
+    "longitude": 110.6364591
+  },
+  {
+    "no": 43,
+    "first_name": "Maureen Arsa",
+    "last_name": "Sanda Cantika",
+    "email": "maureenarsasandacantika@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.6395488,
+    "longitude": 110.6838172
+  },
+  {
+    "no": 44,
+    "first_name": "Meyna",
+    "last_name": "Anjar Nilawati",
+    "email": "meynaanjarnilawati@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5647362,
+    "longitude": 110.6912811
+  },
+  {
+    "no": 45,
+    "first_name": "Michael Noelvito",
+    "last_name": "Husodo",
+    "email": "michaelnoelvitohusodo2003@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.7334783,
+    "longitude": 110.6461013
+  },
+  {
+    "no": 46,
+    "first_name": "Miftah",
+    "last_name": "Desma",
+    "email": "miftahdesmasyahputra@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.581249,
+    "longitude": 110.179933
+  },
+  {
+    "no": 47,
+    "first_name": "Minarni",
+    "last_name": "Kukilo Buhana",
+    "email": "minarnikukilobuhana@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7527921,
+    "longitude": 110.3414746
+  },
+  {
+    "no": 48,
+    "first_name": "Muhammad",
+    "last_name": "Anshori",
+    "email": "muhammadanshori@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.7839021,
+    "longitude": 110.4838315
+  },
+  {
+    "no": 49,
+    "first_name": "MUHAMMAD NASHAN",
+    "last_name": "FAUZIAN",
+    "email": "muhammadnashanfauzian1404@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.7785444,
+    "longitude": 110.7047644
+  },
+  {
+    "no": 50,
+    "first_name": "Muhammad Nazhmi",
+    "last_name": "Najib Al-Akhdhar",
+    "email": "muhammadnazhminajiba@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.8855616,
+    "longitude": 110.6391594
+  },
+  {
+    "no": 51,
+    "first_name": "nazhifa",
+    "last_name": "khoirunnisa",
+    "email": "nazhifakhoirunnisa@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.6696938,
+    "longitude": 110.2512419
+  },
+  {
+    "no": 52,
+    "first_name": "Nisa",
+    "last_name": "Ardiyanti",
+    "email": "nisaardiyanti@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5543256,
+    "longitude": 110.7132995
+  },
+  {
+    "no": 53,
+    "first_name": "Nurnita",
+    "last_name": "Permatasari",
+    "email": "nurnitapermatasari@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.6188306,
+    "longitude": 110.5745392
+  },
+  {
+    "no": 54,
+    "first_name": "Putri",
+    "last_name": "Saynata",
+    "email": "putri.cahya.saynata@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5625393,
+    "longitude": 110.6623322
+  },
+  {
+    "no": 55,
+    "first_name": "Raissa",
+    "last_name": "Nirbana",
+    "email": "raissanirbana1904@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.7718803,
+    "longitude": 110.7103151
+  },
+  {
+    "no": 56,
+    "first_name": "Rasyidini",
+    "last_name": "Ayu Rahmawati",
+    "email": "rasyidiniayurahmawati@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.6583255,
+    "longitude": 110.6562968
+  },
+  {
+    "no": 57,
+    "first_name": "RENDY",
+    "last_name": "PUTRA MARETIKA",
+    "email": "rendy.putra.maretika@ugm.ac.id",
+    "class": "A",
+    "gender": "male",
+    "latitude": -7.61221,
+    "longitude": 110.5885459
+  },
+  {
+    "no": 58,
+    "first_name": "Rindi",
+    "last_name": "Tri setyaningsih",
+    "email": "rinditrisetyaningsih2004@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.6483511,
+    "longitude": 110.4211382
+  },
+  {
+    "no": 59,
+    "first_name": "Rini",
+    "last_name": "Husadiyah",
+    "email": "rini.husadiyah@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.6343101,
+    "longitude": 110.4761801
+  },
+  {
+    "no": 60,
+    "first_name": "Risma",
+    "last_name": "Enggar Sri Kawurihan",
+    "email": "rismaenggarsrikawurihan@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.8123405,
+    "longitude": 110.5740486
+  },
+  {
+    "no": 61,
+    "first_name": "Rowina",
+    "last_name": "Andini",
+    "email": "rowinaandini@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.8676731,
+    "longitude": 110.4838818
+  },
+  {
+    "no": 62,
+    "first_name": "Salsabila Eka",
+    "last_name": "Fadila",
+    "email": "salsabilaekafadila@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.5656504,
+    "longitude": 110.5141614
+  },
+  {
+    "no": 63,
+    "first_name": "Tita",
+    "last_name": "Amalia",
+    "email": "titaamaliasudarma@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.6768131,
+    "longitude": 110.7195373
+  },
+  {
+    "no": 64,
+    "first_name": "Trisna Diah Ayu",
+    "last_name": "Wulandari",
+    "email": "trisnadiahayuwulandari@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7326718,
+    "longitude": 110.6300708
+  },
+  {
+    "no": 65,
+    "first_name": "Vaza",
+    "last_name": "Zuvarul Lutfhan",
+    "email": "vaza.z.l@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "male",
+    "latitude": -7.6176897,
+    "longitude": 110.4620444
+  },
+  {
+    "no": 66,
+    "first_name": "Veronica",
+    "last_name": "Tia Ningrum",
+    "email": "veronicatianingrum@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.8851751,
+    "longitude": 110.2712902
+  },
+  {
+    "no": 67,
+    "first_name": "Wulan",
+    "last_name": "Indahsari",
+    "email": "wulanindahsari2002@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.7577165,
+    "longitude": 110.5797371
+  },
+  {
+    "no": 68,
+    "first_name": "Yasin",
+    "last_name": "Manik Hawa",
+    "email": "yasinmanikhawa@mail.ugm.ac.id",
+    "class": "B",
+    "gender": "female",
+    "latitude": -7.8919839,
+    "longitude": 110.3004266
+  },
+  {
+    "no": 69,
+    "first_name": "Yellove",
+    "last_name": "Yellove Devitaraja",
+    "email": "yellovedevitaraja0203@mail.ugm.ac.id",
+    "class": "A",
+    "gender": "female",
+    "latitude": -7.738641,
+    "longitude": 110.2729708
+  }
+]
