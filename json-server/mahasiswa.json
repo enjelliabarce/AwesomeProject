@@ -1,0 +1,40 @@
+{
+  "mahasiswa": [
+    {
+      "id": "af1d",
+      "first_name": "Enjellia",
+      "last_name": "Barce",
+      "email": "asmarinanurjanah1504@mail.ugm.ac.id",
+      "class": "A",
+      "gender": "female",
+      "latitude": -7.55678,
+      "longitude": 110.896461
+    },
+    {
+      "id": "af1d",
+      "first_name": "Enjellia",
+      "last_name": "Barce",
+      "email": "asmarinanurjanah1504@mail.ugm.ac.id",
+      "class": "A",
+      "gender": "female",
+      "latitude": -7.55678,
+      "longitude": 110.896461
+    },
+    {
+      "id": "b6e9",
+      "first_name": "Enjellia ",
+      "last_name": "barce",
+      "email": "enjelliabarcepratama@mail.ugm.ac.id",
+      "kelas": "A",
+      "gender": "Female "
+    },
+    {
+      "id": "4186",
+      "first_name": "Trisna",
+      "last_name": "Diah",
+      "email": "trisnaimut@gmail.com",
+      "kelas": "B",
+      "gender": "Female"
+    }
+  ]
+}
