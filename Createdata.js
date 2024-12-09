@@ -28,7 +28,7 @@ const submit = () => {
    .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        alert('Data tersimpan');
+        alert('Berhasil Disimpan');
         setFirstName('');
         setLastName('');
         setEmail('');
