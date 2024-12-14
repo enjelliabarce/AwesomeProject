@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enji's Kitchen</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f6f9fc;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-section h2 {
+            margin-top: 0;
+            color: #3498db;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .info-section p {
+            font-size: 1.1em;
+            color: #555;
+            text-align: center;
+        }
+
+        #map {
+            height: 450px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        .branch {
+            cursor: pointer;
+            color: #8e44ad;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        .branch:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+
+        .branch-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        ul li::before {
+            content: '🌟';
+            margin-right: 10px;
+        }
+
+        .branch-list .branch {
+            padding: 5px;
+            background: #f0f4f7;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .branch-list .branch:hover {
+            background: #dfe6e9;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="info-section">
+            <h2>🍴 Enji's Kitchen 🍴</h2>
+            <p>Tempat makan terbaik di Yogyakarta dengan cita rasa enak yang menggugah selera!</p>
+        </div>
+
+        <div class="info-section">
+            <h2>📅 Berdiri Sejak</h2>
+            <p><strong>15 Desember 2024</strong></p>
+        </div>
+
+        <div class="info-section">
+            <h2>📍 Lokasi Utama</h2>
+            <p>Jalan Amerta Raya, Monjali</p>
+        </div>
+
+        <div class="info-section">
+            <h2>🏢 Cabang Restoran</h2>
+            <ul class="branch-list">
+                <li class="branch" data-lat="-7.7849" data-lng="110.3607">Cabang Yogyakarta - Jalan Tentara Pelajar</li>
+                <li class="branch" data-lat="-7.7790" data-lng="110.3617">Cabang Yogyakarta - Jalan Magelang Dekat Borobudur Plaza</li>
+                <li class="branch" data-lat="-7.7633" data-lng="110.3586">Cabang Yogyakarta - Jalan Kragilan</li>
+                <li class="branch" data-lat="-7.7952" data-lng="110.3578">Cabang Yogyakarta - Ngampilan </li>
+                <li class="branch" data-lat="-7.7496" data-lng="110.3681">Cabang Yogyakarta - Jalan Amerta Raya, Monjali</li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h2>🗺️ Lokasi Kami</h2>
+            <div id="map"></div>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 Enji's Kitchen - Semua Hak Dilindungi.
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([-7.7849, 110.3607], 13); // Peta dimulai di Yogyakarta
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        var activeMarker = null;
+
+        var branches = [
+            { lat: -7.7849, lng: 110.3607, name: 'Cabang Yogyakarta - Jalan Pahlawan No. 1' },
+            { lat: -7.7790, lng: 110.3617, name: 'Cabang Yogyakarta - Jalan Sosrowijayan No. 2' },
+            { lat: -7.7574, lng: 110.3523, name: 'Cabang Yogyakarta - Jalan Kranggan No. 6' },
+            { lat: -7.7865, lng: 110.3579, name: 'Cabang Yogyakarta - Jalan Ngadisuryan No. 3' },
+            { lat: -7.7496, lng: 110.3681, name: 'Cabang Yogyakarta - Jalan Tugu No. 7' }
+        ];
+
+        branches.forEach(function(branch) {
+            L.marker([branch.lat, branch.lng]).addTo(map)
+                .bindPopup(`<strong>${branch.name}</strong>`);
+        });
+
+        var branchElements = document.querySelectorAll('.branch');
+
+        branchElements.forEach(function (branch) {
+            branch.addEventListener('click', function() {
+                var lat = parseFloat(branch.getAttribute('data-lat'));
+                var lng = parseFloat(branch.getAttribute('data-lng'));
+                var branchName = branch.textContent;
+
+                map.setView([lat, lng], 15);
+
+                // Clear any previous markers
+                if (activeMarker) {
+                    map.removeLayer(activeMarker);
+                }
+
+                // Add new marker
+                activeMarker = L.marker([lat, lng]).addTo(map)
+                    .bindPopup(`<strong>${branchName}</strong>`)
+                    .openPopup();
+            });
+        });
+    </script>
+</body>
+
+</html>

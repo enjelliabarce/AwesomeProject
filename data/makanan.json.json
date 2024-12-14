@@ -1,0 +1,92 @@
+[
+  {
+    "no": 1,
+    "Makanan": "Chicken Noodles",
+    "Harga": "35,000",
+    "information": "Food"
+  },
+  {
+    "no": 2,
+    "Makanan": "Meatballs",
+    "Harga": "32,000",
+    "information": "Food"
+  },
+  {
+    "no": 3,
+    "Makanan": "Egg Noodels",
+    "Harga": "30,000",
+    "information": "Food"
+  },
+  {
+    "no": 4,
+    "Makanan": "Chicken Salted egg ricebowl",
+    "Harga": "40,000",
+    "information": "Food"
+  },
+  {
+    "no": 5,
+    "Makanan": "Satay",
+    "Harga": "25,000",
+    "information": "Food"
+  },
+  {
+    "no": 6,
+    "Makanan": "Fried Chicken",
+    "Harga": "15,000",
+    "information": "Food"
+  },
+  {
+    "no": 7,
+    "Makanan": "Rice",
+    "Harga": "7,000",
+    "information": "Food"
+  },
+  {
+    "no": 8,
+    "Makanan": "Orange Jucie",
+    "Harga": "20,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 9,
+    "Makanan": "Ice tea",
+    "Harga": "15,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 10,
+    "Makanan": "Apple Juice",
+    "Harga": "20,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 11,
+    "Makanan": "Pinapple Juice",
+    "Harga": "23,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 12,
+    "Makanan": "Avocado Juice",
+    "Harga": "24,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 13,
+    "Makanan": "Strawberry Juice",
+    "Harga": "21,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 14,
+    "Makanan": "Chocolate",
+    "Harga": "30,000",
+    "information": "Beverage"
+  },
+  {
+    "no": 15,
+    "Makanan": "Coffee",
+    "Harga": "28,000",
+    "information": "Beverage"
+  }
+]

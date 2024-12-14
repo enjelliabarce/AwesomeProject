@@ -1,87 +1,28 @@
 {
   "mahasiswa": [
     {
-      "id": "af1d",
-      "first_name": "Enjellia",
-      "last_name": "Barce",
-      "email": "asmarinanurjanah1504@mail.ugm.ac.id",
-      "class": "A",
-      "gender": "female",
-      "latitude": -7.55678,
-      "longitude": 110.896461
+      "id": "fd9d",
+      "first_name": "ppp",
+      "last_name": "hhh",
+      "kelas": "bbbb",
+      "foodQuantity": 2,
+      "drinkQuantity": 2
     },
     {
-      "id": "af1d",
-      "first_name": "Enjellia",
-      "last_name": "Barce",
-      "email": "asmarinanurjanah1504@mail.ugm.ac.id",
-      "class": "A",
-      "gender": "female",
-      "latitude": -7.55678,
-      "longitude": 110.896461
+      "id": "348b",
+      "first_name": "hshsb",
+      "last_name": "uiuuu",
+      "kelas": "owowoowo",
+      "foodQuantity": 3,
+      "drinkQuantity": 2
     },
     {
-      "id": "b6e9",
-      "first_name": "Enjellia ",
-      "last_name": "barce",
-      "email": "enjelliabarcepratama@mail.ugm.ac.id",
-      "kelas": "A",
-      "gender": "Female "
-    },
-    {
-      "id": "4186",
-      "first_name": "Trisna",
-      "last_name": "Diah",
-      "email": "trisnaimut@gmail.com",
-      "kelas": "B",
-      "gender": "Female"
-    },
-    {
-      "id": "f925",
-      "first_name": "enjel",
-      "last_name": "bare",
-      "email": "liae30085@gmail.com",
-      "kelas": "A",
-      "gender": "Perempuan"
-    },
-    {
-      "id": "9ba9",
-      "first_name": "enjel",
-      "last_name": "bare",
-      "email": "liae30085@gmail.com",
-      "kelas": "A",
-      "gender": "Perempuan"
-    },
-    {
-      "id": "725b",
-      "first_name": "enjel",
-      "last_name": "bare",
-      "email": "liae30085@gmail.com",
-      "kelas": "A",
-      "gender": "Perempuan"
-    },
-    {
-      "id": "9a1c",
-      "first_name": "p",
-      "last_name": "g",
-      "email": "enjelliabarcepratama@mail.ugm.ac.id",
-      "kelas": "a",
-      "gender": "hih"
-    },
-    {
-      "id": "dc12",
-      "first_name": "Enjelica",
-      "last_name": "Ama",
-      "email": "amasangatcantiksekaliiia@mail.ugm.ac.id",
-      "kelas": "Z",
-      "gender": "Uhuy"
-    },
-    {
-      "id": "66fa",
-      "first_name": "Enjellia",
-      "last_name": "Barce",
-      "email": "asmarinanurjanah1504@mail.ugm.ac.id",
-      "gender": "female"
+      "id": "47f1",
+      "first_name": "sate",
+      "last_name": "es",
+      "kelas": "bshssn",
+      "foodQuantity": 1,
+      "drinkQuantity": 1
     }
   ]
 }

@@ -5,12 +5,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profil from './App';
 import Mahasiswa from './Mahasiswa';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faUser, faUserGraduate, faPlusCircle, faUserPen } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faList, faPenToSquare, faPlusCircle, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { WebView } from 'react-native-webview';
 import Createdata from './Createdata';
 import DataMahasiswa from './Listdata';
 import EditData from './EditData';
+
+const webmap = require('./Map.html')
 
 function HomeScreen() {
     return (
@@ -29,6 +31,18 @@ function EditScreen() {
         <EditData/>
     );
 }
+function MahasiswaScreen() {
+    return (
+        <Mahasiswa/>
+    );
+}
+function MapScreen() {
+    return (
+       <WebView
+        source={webmap}
+        />
+    );
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -36,20 +50,30 @@ export default function App() {
     return (
         <NavigationContainer>
             <Tab.Navigator>
-                <Tab.Screen name="Tambah" component={HomeScreen} options={{
+            <Tab.Screen name="Menu" component={MahasiswaScreen} options={{
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesomeIcon icon={faBookOpen} color={color} size={20} />
+                    ),
+                }} />
+                <Tab.Screen name="Pesan Disini" component={HomeScreen} options={{
                     headerShown: false,
                     tabBarIcon: ({ color }) => (
                         <FontAwesomeIcon icon={faPlusCircle} color={color} size={20} />
                     ),
                 }} />
-                <Tab.Screen name="Data Mahasiswa" component={DataMahasiswaScreen} options={{
+                <Tab.Screen name="Pesanan" component={DataMahasiswaScreen} options={{
                     tabBarIcon: ({ color }) => (
-                        <FontAwesomeIcon icon={faUserGraduate} color={color} size={20} />
+                        <FontAwesomeIcon icon={faList} color={color} size={20} />
                     ),
                 }} />
-                <Tab.Screen name="Edit" component={EditScreen} options={{
+                <Tab.Screen name="Edit Pesanan" component={EditScreen} options={{
                     tabBarIcon: ({ color }) => (
-                        <FontAwesomeIcon icon={faUserPen} color={color} size={20} />
+                        <FontAwesomeIcon icon={faPenToSquare} color={color} size={20} />
+                    ),
+                }} />
+                <Tab.Screen name="Tentang Kami" component={MapScreen} options={{
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesomeIcon icon={faUser} color={color} size={20} />
                     ),
                 }} />
             </Tab.Navigator>
