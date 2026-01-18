@@ -1,202 +1,143 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faBowlRice, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { ref, onValue, update } from 'firebase/database';
+import { database } from './FirebaseConfig';
 
-const Listdata = () => {
-  const jsonUrl = 'http://192.168.180.67:3000/mahasiswa';
-  const [isLoading, setLoading] = useState(true);
-  const [dataUser, setDataUser] = useState([]);
-  const [refresh, setRefresh] = useState(false);
-  const [completedData, setCompletedData] = useState([]);
-
-  const fetchData = () => {
-    setLoading(true);
-    fetch(jsonUrl)
-      .then((response) => response.json())
-      .then((json) => {
-        setDataUser(json);
-      })
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  };
+const History = () => {
+  const [dataPeminjaman, setDataPeminjaman] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    const peminjamanRef = ref(database, 'peminjaman');
+
+    const unsubscribe = onValue(peminjamanRef, snapshot => {
+      const data = snapshot.val();
+      if (data) {
+        const arrayData = Object.keys(data).map(key => ({
+          id: key,
+          ...data[key],
+        }));
+        setDataPeminjaman(arrayData);
+      } else {
+        setDataPeminjaman([]);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const refreshPage = () => {
-    setRefresh(true);
-    fetchData();
-    setRefresh(false);
+  const selesaiPinjam = (id) => {
+    update(ref(database, `peminjaman/${id}`), {
+      status: 'selesai',
+      selesaiAt: Date.now(),
+    });
   };
 
-  const deleteData = (id) => {
-    fetch(`${jsonUrl}/${id}`, { method: 'DELETE' })
-      .then((response) => response.json())
-      .then(() => {
-        Alert.alert('Data terhapus');
-        fetchData();
-      })
-      .catch((error) => console.error(error));
-  };
+  const renderItem = ({ item }) => (
+    <View style={styles.card}>
+      <Text style={styles.nama}>{item.nama_penyewa}</Text>
+      <Text>Plat Motor : {item.plat_motor}</Text>
+      <Text>Tujuan     : {item.tujuan}</Text>
+      <Text>Lama Pinjam: {item.lama_pinjam} hari</Text>
+      <Text>Jumlah Helm: {item.jumlah_helm}</Text>
 
-  const completeOrder = (item) => {
-    setCompletedData([...completedData, item]);
-    setDataUser(dataUser.filter((user) => user.id !== item.id));
-  };
+      <Text
+        style={[
+          styles.status,
+          item.status === 'dipinjam'
+            ? styles.aktif
+            : styles.selesai,
+        ]}
+      >
+        Status: {item.status}
+      </Text>
 
-  const renderItem = ({ item, isCompleted = false }) => (
-    <TouchableOpacity>
-      <View style={[styles.card, isCompleted && styles.completedCard]}>
-        <View style={styles.avatar}>
-          <FontAwesomeIcon icon={faBowlRice} size={50} color={item.color} />
-        </View>
-        <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>{item.first_name} </Text>
-          <Text style={styles.cardTitle}>{item.last_name}</Text>
-          <Text style={styles.cardSubtitle}>{item.kelas} - {item.gender}</Text>
-          <Text style={styles.cardDetails}>Jumlah Makanan: {item.foodQuantity}</Text>
-          <Text style={styles.cardDetails}>Jumlah Minuman: {item.drinkQuantity}</Text>
-        </View>
-        <FontAwesomeIcon icon={faChevronRight} size={20} style={styles.icon} />
-      </View>
-      {!isCompleted && (
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={[styles.button, styles.deleteButton]} onPress={() => deleteData(item.id)}>
-            <Text style={styles.buttonText}>Hapus</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.completeButton]} onPress={() => completeOrder(item)}>
-            <Text style={styles.buttonText}>Selesai</Text>
-          </TouchableOpacity>
-        </View>
+      {item.status === 'dipinjam' && (
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => selesaiPinjam(item.id)}
+        >
+          <Text style={styles.buttonText}>Selesaikan Peminjaman</Text>
+        </TouchableOpacity>
       )}
-    </TouchableOpacity>
+    </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Pesanan</Text>
-      </View>
-      {isLoading ? (
-        <View style={styles.loading}>
-          <Text style={styles.cardTitle}>Loading...</Text>
-        </View>
+      <Text style={styles.header}>History Peminjaman</Text>
+
+      {loading ? (
+        <Text style={styles.loading}>Loading...</Text>
       ) : (
-        <>
-          <Text style={styles.sectionTitle}>Pesanan Aktif</Text>
-          <FlatList
-            data={dataUser}
-            onRefresh={refreshPage}
-            refreshing={refresh}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => renderItem({ item })}
-          />
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>Pesanan Selesai</Text>
-          <FlatList
-            data={completedData}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => renderItem({ item, isCompleted: true })}
-          />
-        </>
+        <FlatList
+          data={dataPeminjaman}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+        />
       )}
     </SafeAreaView>
   );
 };
 
+export default History;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
+    padding: 10,
   },
   header: {
-    backgroundColor: '#4caf50',
-    padding: 15,
-    alignItems: 'center',
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 15,
   },
   loading: {
-    alignItems: 'center',
+    textAlign: 'center',
     marginTop: 20,
+    fontWeight: 'bold',
   },
   card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 15,
-    marginVertical: 5,
-    marginHorizontal: 10,
     backgroundColor: '#fff',
+    padding: 15,
     borderRadius: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
+    marginBottom: 12,
     elevation: 3,
   },
-  completedCard: {
-    backgroundColor: '#e0ffe0',
-  },
-  avatar: {
-    marginRight: 15,
-  },
-  cardContent: {
-    flex: 1,
-  },
-  cardTitle: {
+  nama: {
     fontSize: 16,
     fontWeight: 'bold',
+    marginBottom: 5,
   },
-  cardSubtitle: {
-    fontSize: 14,
-    color: '#555',
-  },
-  cardDetails: {
-    fontSize: 12,
-    color: '#777',
-  },
-  icon: {
-    color: '#aaa',
-  },
-  sectionTitle: {
-    fontSize: 18,
+  status: {
+    marginTop: 8,
     fontWeight: 'bold',
-    marginHorizontal: 10,
-    marginTop: 20,
   },
-  divider: {
-    height: 1,
-    backgroundColor: '#ccc',
-    marginVertical: 10,
+  aktif: {
+    color: 'orange',
   },
-  buttonGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginHorizontal: 10,
-    marginBottom: 10,
+  selesai: {
+    color: 'green',
   },
   button: {
-    flex: 1,
-    marginHorizontal: 5,
+    marginTop: 10,
+    backgroundColor: '#28a745',
     padding: 10,
     borderRadius: 8,
     alignItems: 'center',
-  },
-  deleteButton: {
-    backgroundColor: '#ff5252',
-  },
-  completeButton: {
-    backgroundColor: '#4caf50',
   },
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
 });
-
-export default Listdata;

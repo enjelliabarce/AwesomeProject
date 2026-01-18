@@ -5,14 +5,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profil from './App';
 import Mahasiswa from './Mahasiswa';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faBookOpen, faList, faPenToSquare, faPlusCircle, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faList, faPenToSquare, faPlusCircle, faMap } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { WebView } from 'react-native-webview';
 import Createdata from './Createdata';
 import DataMahasiswa from './Listdata';
 import EditData from './EditData';
 
-const webmap = require('./Map.html')
+const webmap = require('./Map.js')
 
 function HomeScreen() {
     return (
@@ -71,9 +71,9 @@ export default function App() {
                         <FontAwesomeIcon icon={faPenToSquare} color={color} size={20} />
                     ),
                 }} />
-                <Tab.Screen name="Tentang Kami" component={MapScreen} options={{
+                <Tab.Screen name="Maps" component={MapScreen} options={{
                     tabBarIcon: ({ color }) => (
-                        <FontAwesomeIcon icon={faUser} color={color} size={20} />
+                        <FontAwesomeIcon icon={faMap} color={color} size={20} />
                     ),
                 }} />
             </Tab.Navigator>

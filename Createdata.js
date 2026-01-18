@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, ScrollView, TextInput, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  ScrollView,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+  Alert
+} from 'react-native';
+
+import { database } from './FirebaseConfig';
+import { ref, push, set } from 'firebase/database';
 
 const Createdata = () => {
-  const jsonUrl = 'http://192.168.180.67:3000/mahasiswa';
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [kelas, setKelas] = useState('');
@@ -11,58 +23,64 @@ const Createdata = () => {
 
   const incrementFoodQuantity = () => setFoodQuantity(foodQuantity + 1);
   const decrementFoodQuantity = () => {
-    if (foodQuantity > 0) {
-      setFoodQuantity(foodQuantity - 1);
-    }
+    if (foodQuantity > 0) setFoodQuantity(foodQuantity - 1);
   };
 
   const incrementDrinkQuantity = () => setDrinkQuantity(drinkQuantity + 1);
   const decrementDrinkQuantity = () => {
-    if (drinkQuantity > 0) {
-      setDrinkQuantity(drinkQuantity - 1);
+    if (drinkQuantity > 0) setDrinkQuantity(drinkQuantity - 1);
+  };
+
+  const submit = async () => {
+    if (!first_name || !last_name) {
+      Alert.alert("Error", "Nama penyewa dan plat motor wajib diisi");
+      return;
+    }
+
+    const data = {
+      nama_penyewa: first_name,
+      plat_motor: last_name,
+      tujuan: kelas,
+      lama_pinjam: foodQuantity,
+      jumlah_helm: drinkQuantity,
+      status: "dipinjam",
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      const peminjamanRef = push(ref(database, 'peminjaman'));
+      await set(peminjamanRef, data);
+
+      Alert.alert("Sukses", "✅ Data peminjaman berhasil disimpan");
+
+      setFirstName('');
+      setLastName('');
+      setKelas('');
+      setFoodQuantity(0);
+      setDrinkQuantity(0);
+    } catch (error) {
+      Alert.alert("Gagal", error.message);
     }
   };
 
-  const submit = () => {
-    const data = {
-      first_name,
-      last_name,
-      kelas,
-      foodQuantity,
-      drinkQuantity,
-    };
-    fetch(jsonUrl, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        alert('Mohon Ditunggu,Bestie!!');
-        setFirstName('');
-        setLastName('');
-        setKelas('');
-        setFoodQuantity(0);
-        setDrinkQuantity(0);
-      });
-  };
-
   return (
-    <ImageBackground source={{ uri: 'https://source.unsplash.com/featured/?food,drink' }} style={styles.backgroundImage}>
+    <ImageBackground
+      source={{ uri: 'https://source.unsplash.com/featured/?motorcycle' }}
+      style={styles.backgroundImage}
+    >
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Pesan Makanan dan Minuman</Text>
+        <Text style={styles.title}>Form Peminjaman Motor</Text>
+
         <ScrollView contentContainerStyle={styles.form}>
           <TextInput
             style={styles.input}
-            placeholder="Nama Makanan"
+            placeholder="Nama Penyewa"
             value={first_name}
             onChangeText={setFirstName}
           />
+
           <View style={styles.quantityContainer}>
-            <Text style={styles.quantityLabel}>Jumlah Makanan:</Text>
+            <Text style={styles.quantityLabel}>Lama Peminjaman (Hari)</Text>
             <TouchableOpacity style={styles.quantityButton} onPress={decrementFoodQuantity}>
               <Text style={styles.quantityButtonText}>-</Text>
             </TouchableOpacity>
@@ -74,12 +92,13 @@ const Createdata = () => {
 
           <TextInput
             style={styles.input}
-            placeholder="Nama Minuman"
+            placeholder="Plat Nomor Motor"
             value={last_name}
             onChangeText={setLastName}
           />
+
           <View style={styles.quantityContainer}>
-            <Text style={styles.quantityLabel}>Jumlah Minuman:</Text>
+            <Text style={styles.quantityLabel}>Jumlah Helm</Text>
             <TouchableOpacity style={styles.quantityButton} onPress={decrementDrinkQuantity}>
               <Text style={styles.quantityButtonText}>-</Text>
             </TouchableOpacity>
@@ -91,12 +110,13 @@ const Createdata = () => {
 
           <TextInput
             style={styles.input}
-            placeholder="Catatan"
+            placeholder="Tujuan / Catatan Peminjaman"
             value={kelas}
             onChangeText={setKelas}
           />
+
           <TouchableOpacity style={styles.submitButton} onPress={submit}>
-            <Text style={styles.submitButtonText}>Pesan Sekarang</Text>
+            <Text style={styles.submitButtonText}>Ajukan Peminjaman</Text>
           </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
@@ -113,7 +133,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',
   },
   title: {
     fontSize: 26,
@@ -121,9 +140,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     marginVertical: 20,
-    textShadowColor: '#000',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 5,
   },
   form: {
     padding: 20,
@@ -134,7 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 15,
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    backgroundColor: 'rgba(255,255,255,0.9)',
     fontSize: 16,
   },
   quantityContainer: {
@@ -152,18 +168,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginHorizontal: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   quantityButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
     color: '#fff',
+    fontWeight: 'bold',
   },
   quantityText: {
+    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
   },
   submitButton: {
     backgroundColor: '#28a745',

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare, faBowlRice } from '@fortawesome/free-solid-svg-icons';
 
 const Createdata = () => {
-    const jsonUrl = 'http://192.168.180.67:3000/mahasiswa';
+    const jsonUrl = 'http://10.126.204.67:3000/mahasiswa';
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [kelas, setKelas] = useState('');
