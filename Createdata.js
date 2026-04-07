@@ -1,193 +1,271 @@
 import React, { useState } from 'react';
 import {
-  SafeAreaView,
   View,
-  ScrollView,
-  TextInput,
   Text,
-  TouchableOpacity,
+  TextInput,
   StyleSheet,
-  ImageBackground,
-  Alert
+  TouchableOpacity
 } from 'react-native';
 
-import { database } from './FirebaseConfig';
-import { ref, push, set } from 'firebase/database';
+const Createdata = ({ route }) => {
 
-const Createdata = () => {
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [kelas, setKelas] = useState('');
-  const [foodQuantity, setFoodQuantity] = useState(0);
-  const [drinkQuantity, setDrinkQuantity] = useState(0);
+  const {
+    nama_motor,
+    plat_motor,
+    startDate,
+    endDate
+  } = route.params || {};
 
-  const incrementFoodQuantity = () => setFoodQuantity(foodQuantity + 1);
-  const decrementFoodQuantity = () => {
-    if (foodQuantity > 0) setFoodQuantity(foodQuantity - 1);
-  };
+  const [nama, setNama] = useState(nama_motor || '');
+  const [plat, setPlat] = useState(plat_motor || '');
+  const [helm, setHelm] = useState(0);
 
-  const incrementDrinkQuantity = () => setDrinkQuantity(drinkQuantity + 1);
-  const decrementDrinkQuantity = () => {
-    if (drinkQuantity > 0) setDrinkQuantity(drinkQuantity - 1);
-  };
-
-  const submit = async () => {
-    if (!first_name || !last_name) {
-      Alert.alert("Error", "Nama penyewa dan plat motor wajib diisi");
-      return;
-    }
-
-    const data = {
-      nama_penyewa: first_name,
-      plat_motor: last_name,
-      tujuan: kelas,
-      lama_pinjam: foodQuantity,
-      jumlah_helm: drinkQuantity,
-      status: "dipinjam",
-      createdAt: new Date().toISOString(),
-    };
-
-    try {
-      const peminjamanRef = push(ref(database, 'peminjaman'));
-      await set(peminjamanRef, data);
-
-      Alert.alert("Sukses", "✅ Data peminjaman berhasil disimpan");
-
-      setFirstName('');
-      setLastName('');
-      setKelas('');
-      setFoodQuantity(0);
-      setDrinkQuantity(0);
-    } catch (error) {
-      Alert.alert("Gagal", error.message);
-    }
-  };
+  const [deliveryType, setDeliveryType] = useState('ambil'); // ambil / antar
+  const [alamat, setAlamat] = useState('');
 
   return (
-    <ImageBackground
-      source={{ uri: 'https://source.unsplash.com/featured/?motorcycle' }}
-      style={styles.backgroundImage}
-    >
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Form Peminjaman Motor</Text>
+    <View style={styles.container}>
 
-        <ScrollView contentContainerStyle={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Nama Penyewa"
-            value={first_name}
-            onChangeText={setFirstName}
-          />
+      {/* HEADER */}
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Cart</Text>
+      </View>
 
-          <View style={styles.quantityContainer}>
-            <Text style={styles.quantityLabel}>Lama Peminjaman (Hari)</Text>
-            <TouchableOpacity style={styles.quantityButton} onPress={decrementFoodQuantity}>
-              <Text style={styles.quantityButtonText}>-</Text>
-            </TouchableOpacity>
-            <Text style={styles.quantityText}>{foodQuantity}</Text>
-            <TouchableOpacity style={styles.quantityButton} onPress={incrementFoodQuantity}>
-              <Text style={styles.quantityButtonText}>+</Text>
-            </TouchableOpacity>
-          </View>
+      {/* CARD */}
+      <View style={styles.card}>
 
-          <TextInput
-            style={styles.input}
-            placeholder="Plat Nomor Motor"
-            value={last_name}
-            onChangeText={setLastName}
-          />
+        <Text style={styles.motor}>{nama}</Text>
+        <Text style={styles.plat}>{plat}</Text>
 
-          <View style={styles.quantityContainer}>
-            <Text style={styles.quantityLabel}>Jumlah Helm</Text>
-            <TouchableOpacity style={styles.quantityButton} onPress={decrementDrinkQuantity}>
-              <Text style={styles.quantityButtonText}>-</Text>
-            </TouchableOpacity>
-            <Text style={styles.quantityText}>{drinkQuantity}</Text>
-            <TouchableOpacity style={styles.quantityButton} onPress={incrementDrinkQuantity}>
-              <Text style={styles.quantityButtonText}>+</Text>
-            </TouchableOpacity>
-          </View>
+        <Text style={styles.date}>
+          {startDate} - {endDate}
+        </Text>
 
-          <TextInput
-            style={styles.input}
-            placeholder="Tujuan / Catatan Peminjaman"
-            value={kelas}
-            onChangeText={setKelas}
-          />
+        {/* JUMLAH HELM */}
+        <Text style={styles.label}>Jumlah Helm</Text>
 
-          <TouchableOpacity style={styles.submitButton} onPress={submit}>
-            <Text style={styles.submitButtonText}>Ajukan Peminjaman</Text>
+        <View style={styles.qtyRow}>
+          <TouchableOpacity
+            style={styles.qtyBtn}
+            onPress={() => helm > 0 && setHelm(helm - 1)}
+          >
+            <Text style={styles.qtyText}>-</Text>
           </TouchableOpacity>
-        </ScrollView>
-      </SafeAreaView>
-    </ImageBackground>
+
+          <Text style={styles.qtyNumber}>{helm}</Text>
+
+          <TouchableOpacity
+            style={[styles.qtyBtn, styles.qtyPlus]}
+            onPress={() => setHelm(helm + 1)}
+          >
+            <Text style={[styles.qtyText, { color: '#fff' }]}>+</Text>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+
+      {/* DELIVERY OPTION */}
+      <Text style={styles.section}>Metode Pengambilan</Text>
+
+      <View style={styles.deliveryRow}>
+
+        <TouchableOpacity
+          style={[
+            styles.deliveryBtn,
+            deliveryType === 'ambil' && styles.activeBtn
+          ]}
+          onPress={() => setDeliveryType('ambil')}
+        >
+          <Text style={deliveryType === 'ambil' && styles.activeText}>
+            Ambil di Tempat
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.deliveryBtn,
+            deliveryType === 'antar' && styles.activeBtn
+          ]}
+          onPress={() => setDeliveryType('antar')}
+        >
+          <Text style={deliveryType === 'antar' && styles.activeText}>
+            Diantar
+          </Text>
+        </TouchableOpacity>
+
+      </View>
+
+      {/* MUNCUL HANYA JIKA ANTAR */}
+      {deliveryType === 'antar' && (
+        <TextInput
+          placeholder="Alamat Pengantaran"
+          style={styles.input}
+          value={alamat}
+          onChangeText={setAlamat}
+        />
+      )}
+
+      {/* NOTE */}
+      <TextInput
+        placeholder="Catatan (Opsional)"
+        style={styles.input}
+      />
+
+      {/* BUTTON */}
+      <View style={styles.buttonRow}>
+
+        <TouchableOpacity style={styles.cancel}>
+          <Text>Cancel</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.continue}>
+          <Text style={{ color: '#fff', fontWeight: '600' }}>
+            Continue →
+          </Text>
+        </TouchableOpacity>
+
+      </View>
+
+    </View>
   );
 };
 
 export default Createdata;
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: '#F5F6F8'
   },
-  backgroundImage: {
+
+  header: {
+    backgroundColor: '#E7C873',
+    padding: 20
+  },
+
+  headerText: {
+    fontSize: 22,
+    fontWeight: 'bold'
+  },
+
+  card: {
+    backgroundColor: '#fff',
+    margin: 15,
+    borderRadius: 15,
+    padding: 15,
+    elevation: 3
+  },
+
+  motor: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+
+  plat: {
+    color: '#6B7280',
+    marginTop: 3
+  },
+
+  date: {
+    marginTop: 8,
+    color: '#6B7280'
+  },
+
+  label: {
+    marginTop: 10,
+    fontWeight: '600'
+  },
+
+  qtyRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10
+  },
+
+  qtyBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: '#E5E7EB',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  qtyPlus: {
+    backgroundColor: '#000'
+  },
+
+  qtyText: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+
+  qtyNumber: {
+    marginHorizontal: 15,
+    fontSize: 16
+  },
+
+  section: {
+    marginLeft: 15,
+    marginTop: 10,
+    fontSize: 18,
+    fontWeight: '600'
+  },
+
+  deliveryRow: {
+    flexDirection: 'row',
+    margin: 15
+  },
+
+  deliveryBtn: {
     flex: 1,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-    marginVertical: 20,
-  },
-  form: {
-    padding: 20,
-  },
-  input: {
+    padding: 12,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-    padding: 10,
-    marginBottom: 15,
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    fontSize: 16,
+    marginRight: 10,
+    alignItems: 'center'
   },
-  quantityContainer: {
+
+  activeBtn: {
+    backgroundColor: '#E7C873',
+    borderColor: '#E7C873'
+  },
+
+  activeText: {
+    fontWeight: '600'
+  },
+
+  input: {
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    marginHorizontal: 15,
+    marginTop: 15,
+    paddingVertical: 8
+  },
+
+  buttonRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
+    justifyContent: 'space-between',
+    padding: 15
   },
-  quantityLabel: {
-    flex: 1,
-    fontSize: 16,
-    color: '#fff',
-  },
-  quantityButton: {
-    backgroundColor: '#007bff',
-    borderRadius: 5,
-    padding: 10,
-    marginHorizontal: 5,
-  },
-  quantityButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  quantityText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  submitButton: {
-    backgroundColor: '#28a745',
+
+  cancel: {
+    borderWidth: 1,
+    borderColor: '#ccc',
     padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 20,
+    borderRadius: 12,
+    width: '45%',
+    alignItems: 'center'
   },
-  submitButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
+
+  continue: {
+    backgroundColor: '#E7C873',
+    padding: 15,
+    borderRadius: 12,
+    width: '45%',
+    alignItems: 'center'
+  }
+
 });
