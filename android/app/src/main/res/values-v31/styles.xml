@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Override Android 12+ mandatory splash screen -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <item name="android:windowBackground">@color/splash_bg</item>
+        <!-- Pakai app_logo langsung (tidak di-crop jadi lingkaran) -->
+        <item name="android:windowSplashScreenBackground">#0A0A0A</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/app_logo</item>
+    </style>
+</resources>

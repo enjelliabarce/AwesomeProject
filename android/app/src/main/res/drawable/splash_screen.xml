@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dark background matching login page -->
+    <item>
+        <color android:color="#0A0A0A"/>
+    </item>
+    <!-- Centered logo -->
+    <item
+        android:gravity="center"
+        android:width="200dp"
+        android:height="200dp">
+        <bitmap
+            android:src="@drawable/app_logo"
+            android:gravity="center"
+            android:tileMode="disabled"/>
+    </item>
+</layer-list>

@@ -2,8 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <!-- Samakan dengan background splash RN agar tidak ada flash putih -->
+        <item name="android:windowBackground">@color/splash_bg</item>
+    </style>
+
+    <!-- Splash screen theme: shown on cold start, switched to AppTheme in MainActivity.onCreate -->
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
     </style>
 
 </resources>
