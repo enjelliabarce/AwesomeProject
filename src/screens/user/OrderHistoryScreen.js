@@ -65,7 +65,13 @@ const OrderHistoryScreen = () => {
       'Dengan menekan "Terima & Bagikan", Anda mengkonfirmasi sudah menerima motor dan menyetujui berbagi lokasi secara real-time kepada admin selama masa sewa berlangsung.',
       [
         { text: 'Batal', style: 'cancel' },
-        { text: 'Terima & Bagikan', onPress: () => setTrackingId(itemId) },
+        {
+          text: 'Terima & Bagikan',
+          onPress: () => {
+            update(ref(database, `peminjaman/${itemId}`), { trackingAktif: true });
+            setTrackingId(itemId);
+          },
+        },
       ]
     );
   };
@@ -101,10 +107,17 @@ const OrderHistoryScreen = () => {
 
         {isAktif && (
           isTracking ? (
-            <View style={s.btnTracking}>
-              <Text style={s.btnTrackingTxt}>● Sedang Berbagi Lokasi</Text>
-              <Text style={s.btnTrackingSub}>Otomatis berhenti saat pesanan selesai</Text>
-            </View>
+            item.trackingAktif === false ? (
+              <View style={s.btnTrackingPaused}>
+                <Text style={s.btnTrackingPausedTxt}>● Berbagi lokasi dijeda oleh admin</Text>
+                <Text style={s.btnTrackingSub}>Akan dilanjutkan kembali oleh admin</Text>
+              </View>
+            ) : (
+              <View style={s.btnTracking}>
+                <Text style={s.btnTrackingTxt}>● Sedang Berbagi Lokasi</Text>
+                <Text style={s.btnTrackingSub}>Otomatis berhenti saat pesanan selesai</Text>
+              </View>
+            )
           ) : (
             <View style={s.userBtnCol}>
               <TouchableOpacity
@@ -272,6 +285,15 @@ const s = StyleSheet.create({
   },
   btnTrackingTxt: { fontSize: 13, fontWeight: '700', color: C.success },
   btnTrackingSub: { fontSize: 11, color: C.success, opacity: 0.7, marginTop: 2 },
+  btnTrackingPaused: {
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1.5,
+    borderColor: '#AAAAAA',
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  btnTrackingPausedTxt: { fontSize: 13, fontWeight: '700', color: '#666666' },
 
   emptyWrap: { flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 80 },
   emptyIcon: { fontSize: 40, marginBottom: 12 },

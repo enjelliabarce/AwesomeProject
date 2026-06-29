@@ -64,9 +64,10 @@ export default function TrackingMapScreen({ route }) {
         const namaMotor = data.nama_motor ?? data.namaMotor ?? 'Motor';
         const platMotor = data.plat_motor ?? data.platMotor ?? '';
         const label = platMotor ? `${namaMotor} · ${platMotor}` : namaMotor;
+        const trackingAktif = data.trackingAktif !== false;
 
-        // Simpan state lokal termasuk updatedAt untuk GPS staleness check
-        activeMotors.current[id] = { lat, lng, acc: acc ?? 0, speed: speed ?? 0, namaMotor, platMotor, updatedAt: updatedAt ?? Date.now() };
+        // Simpan state lokal termasuk updatedAt dan flag trackingAktif
+        activeMotors.current[id] = { lat, lng, acc: acc ?? 0, speed: speed ?? 0, namaMotor, platMotor, updatedAt: updatedAt ?? Date.now(), trackingAktif };
 
         // Geofence check
         const dist = haversineKm(CENTER_LAT, CENTER_LNG, lat, lng);
@@ -109,21 +110,23 @@ export default function TrackingMapScreen({ route }) {
       }
     });
 
-    // GPS staleness checker — cek setiap 15 detik
+    // GPS staleness checker — cek setiap 30 detik (interval GPS naik jadi 15 dtk)
     const staleChecker = setInterval(() => {
       Object.entries(activeMotors.current).forEach(([id, motor]) => {
-        const stale = Date.now() - (motor.updatedAt || 0) > 30_000;
+        // Jangan alert jika admin sengaja mematikan tracking
+        if (!motor.trackingAktif) return;
+        const stale = Date.now() - (motor.updatedAt || 0) > 60_000;
         const lastGpsAlert = gpsOffAlerted.current[id] || 0;
         if (stale && Date.now() - lastGpsAlert > 5 * 60 * 1000) {
           gpsOffAlerted.current[id] = Date.now();
           showNotif(
             CHANNELS.ADMIN,
             'GPS Motor Mati',
-            `Sinyal GPS ${motor.namaMotor} (${motor.platMotor}) tidak update lebih dari 30 detik.`,
+            `Sinyal GPS ${motor.namaMotor} (${motor.platMotor}) tidak update lebih dari 1 menit.`,
           );
         }
       });
-    }, 15_000);
+    }, 30_000);
 
     return () => {
       unsubscribe();

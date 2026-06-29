@@ -9,6 +9,8 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // Simpan credentials agar bisa restart setelah tracking selesai
 let _role = null;
 let _userId = null;
+// Di-resolve saat notifTask benar-benar keluar dari loop-nya (untuk handoff)
+let _notifEnded = null;
 
 const notifTask = async (taskData) => {
   const { role, userId } = taskData;
@@ -83,10 +85,14 @@ const notifTask = async (taskData) => {
 
   // Jaga task tetap hidup
   while (BackgroundService.isRunning()) {
-    await sleep(3000);
+    await sleep(1500);
   }
 
   off(peminjamanRef);
+  if (_notifEnded) {
+    _notifEnded();
+    _notifEnded = null;
+  }
 };
 
 export const startNotificationService = async (role, userId) => {
@@ -112,11 +118,21 @@ export const startNotificationService = async (role, userId) => {
   }
 };
 
-export const stopNotificationService = async () => {
-  _role = null;
-  _userId = null;
-  if (BackgroundService.isRunning()) {
-    await BackgroundService.stop();
+// wait: true → handoff ke tracking. Kredensial dipertahankan agar notif bisa
+// di-restart setelah tracking selesai, dan kita tunggu task benar-benar keluar
+// supaya auto-stop library tidak mematikan tracking yang baru start.
+export const stopNotificationService = async ({ wait = false } = {}) => {
+  if (!wait) {
+    _role = null;
+    _userId = null;
+  }
+  if (!BackgroundService.isRunning()) return;
+  const ended = wait ? new Promise((res) => { _notifEnded = res; }) : null;
+  await BackgroundService.stop();
+  if (ended) {
+    await Promise.race([ended, sleep(2500)]);
+    _notifEnded = null;
+    await sleep(150); // beri jeda agar auto-stop library mereda
   }
 };
 

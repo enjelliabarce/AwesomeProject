@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity,
-  TextInput, Modal, Image, StatusBar,
+  TextInput, Modal, Image, StatusBar, Switch,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ref, onValue, update } from 'firebase/database';
@@ -85,20 +85,38 @@ const AdminOrderHistoryScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         {isAktif && (
-          <View style={s.btnRow}>
-            <TouchableOpacity
-              style={[s.btnFill, { backgroundColor: '#0EA5E9' }]}
-              onPress={() => navigation.navigate('Peta', { peminjamanId: item.id })}
-            >
-              <Text style={s.btnFillTxt}>Lacak Motor</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[s.btnFill, { backgroundColor: C.success }]}
-              onPress={() => selesaiPinjam(item.id)}
-            >
-              <Text style={s.btnFillTxt}>Selesaikan</Text>
-            </TouchableOpacity>
-          </View>
+          <>
+            <View style={s.trackingRow}>
+              <Text style={s.trackingLabel}>GPS Tracking</Text>
+              <View style={s.trackingRight}>
+                <Text style={[s.trackingStatus, { color: item.trackingAktif !== false ? C.success : '#AAAAAA' }]}>
+                  {item.trackingAktif !== false ? 'Aktif' : 'Dimatikan'}
+                </Text>
+                <Switch
+                  value={item.trackingAktif !== false}
+                  onValueChange={(v) =>
+                    update(ref(database, `peminjaman/${item.id}`), { trackingAktif: v })
+                  }
+                  trackColor={{ false: '#DDDDDD', true: C.success + '66' }}
+                  thumbColor={item.trackingAktif !== false ? C.success : '#BBBBBB'}
+                />
+              </View>
+            </View>
+            <View style={s.btnRow}>
+              <TouchableOpacity
+                style={[s.btnFill, { backgroundColor: '#0EA5E9' }]}
+                onPress={() => navigation.navigate('Peta', { peminjamanId: item.id })}
+              >
+                <Text style={s.btnFillTxt}>Lacak Motor</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[s.btnFill, { backgroundColor: C.success }]}
+                onPress={() => selesaiPinjam(item.id)}
+              >
+                <Text style={s.btnFillTxt}>Selesaikan</Text>
+              </TouchableOpacity>
+            </View>
+          </>
         )}
       </View>
     );
@@ -260,6 +278,20 @@ const s = StyleSheet.create({
   motorName: { fontSize: 17, fontWeight: '800', color: C.dark, marginBottom: 10 },
 
   chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginBottom: 12 },
+
+  trackingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#F8F8F8',
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    marginBottom: 8,
+  },
+  trackingLabel: { fontSize: 13, fontWeight: '700', color: C.dark },
+  trackingRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  trackingStatus: { fontSize: 12, fontWeight: '600' },
 
   btnRow: { flexDirection: 'row', gap: 8, marginTop: 4 },
   btnFill: {
