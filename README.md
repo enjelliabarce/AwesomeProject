@@ -1,35 +1,34 @@
-# Nama Produk: Enji's Kitchen
+# Melaju Rent
 
-## Deskripsi Produk
-Apikasi ini dibuat untuk mempermudah pengunjung dalam melakukan proses pemesanan, Pengunjung juga dapat melihat beberapa menu yang ditawaran oleh Enjis,s Kitchen. Dalam aplikasi tersebut pengunjung juga dapat meihat lihat sejak kapan berdirinya Enji's Kitchen serta adanya peta persebaran cabang restoran juga mempermudah pengunjung dalam mengetahui lokasi restoran.
+## Deskripsi
+Melaju Rent adalah aplikasi mobile untuk penyewaan motor berbasis React Native. Pengguna dapat melihat daftar motor yang tersedia, membuat pesanan sewa (dengan opsi jumlah helm dan pengantaran), melacak lokasi motor secara real-time, serta melihat riwayat pesanan. Admin memiliki dashboard terpisah untuk mengelola data motor dan riwayat pesanan seluruh pengguna.
 
-## Komponen Pembangun Produk
-- *React Native*: Framework utama untuk membangun aplikasi mobile.
-- *Metro Bundler*: JavaScript bundler bawaan React Native.
-- *Node.js*: Untuk mengelola dependensi dan skrip aplikasi.
-- *Android Studio & Xcode*: Emulator/simulator untuk pengujian aplikasi di Android dan iOS.
-- *Backend/API*: Menggunakan RESTful API untuk pengelolaan data (opsional, sesuai dengan kebutuhan).
+## Fitur Utama
+- **Autentikasi**: Login & registrasi dengan Firebase Auth, redirect otomatis sesuai role (admin/user).
+- **Daftar Motor**: Melihat motor yang tersedia untuk disewa.
+- **Pemesanan**: Membuat pesanan sewa motor beserta ringkasan pesanan.
+- **Tracking Lokasi**: Pelacakan lokasi motor secara real-time di peta.
+- **Riwayat Pesanan**: Melihat status dan histori pesanan (user & admin).
+- **Dashboard Admin**: Kelola data motor dan pantau riwayat pesanan semua pengguna.
 
-## Sumber Data
-Aplikasi ini menggunakan data:
-- Data daftar menu yang dibuat oleh pribadi.
-- Data cabang restoran yang ditambahkan secara pribadi.
+## Cara Penggunaan
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Jalankan Metro bundler:
+   ```bash
+   npm start
+   ```
+3. Jalankan aplikasi di device/emulator:
+   ```bash
+   npm run android
+   # atau
+   npm run ios
+   ```
+4. Registrasi/login untuk masuk sebagai user, lalu pilih motor dan buat pesanan sewa. Admin login dengan akun bertipe admin untuk mengakses dashboard pengelolaan motor & riwayat pesanan.
 
-## Tangkapan Layar Komponen Penting Produk
-### Halaman Utama
-![Halaman Utama](./screenshots/LandingPage.jpeg)
-
-### Halaman Input Data
-![Halaman Input Data](./screenshots/inputPesanan.jpeg)
-
-### Halaman List Data
-![Halaman List Data](./screenshots/DaftarMenu.jpeg)
-
-### Halaman Tentang Kami
-![Halaman Maps](./screenshots/ProfileResto.jpeg)
-
-### Halaman Edit Data
-![Halaman Edit Data](./screenshots/EditPesanan.jpeg)
-
-### Halaman Status Pemesanan
-![Halaman Tentang App](./screenshots/StatusPemesanan.jpeg)
+## Teknologi
+- React Native 0.75
+- Firebase (Authentication & Realtime Database)
+- React Navigation (Bottom Tabs)
